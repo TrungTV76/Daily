@@ -125,8 +125,15 @@ NOTIFY
 | FETCH | Thu thập 42+ nguồn | Thu thập 42+ nguồn (giống nhau) |
 | INSIGHT | FACT/VIEW + IEIA cơ bản | FACT/VIEW + IEIA **+ second-order analysis** |
 | STRATEGY | Hook + 3 Takeaways | Hook + 3 Takeaways **+ scenario analysis + contrarian view** |
-| PUSH | Quality Gate 8 items | Quality Gate 8 items **+ depth check** |
+| PUSH | Quality Gate v2.0 + Depth Gate | Quality Gate v2.0 + Depth Gate (strict) |
 | NOTIFY | Summary + token usage | Summary + token usage + **key trigger levels** |
+
+### Enterprise Data Policy (NEW)
+
+- **Không bắt buộc đủ 5 ô doanh nghiệp** (cổ tức/ĐHĐCĐ/hợp đồng/LN quý/nợ-cashflow) cho mọi mã.
+- Nếu **không có dữ liệu đã verify** → bỏ qua mục đó, KHÔNG bịa/không suy diễn.
+- Nếu có tin DN/ngành liên quan hoạt động tài chính (kế hoạch vốn, doanh thu, trúng thầu, cảnh báo nợ, thay đổi lợi nhuận...) → đưa vào report với nguồn rõ ràng.
+- Trọng tâm: **chất lượng fact đã verify**, không ép đủ form.
 
 ---
 
@@ -379,6 +386,32 @@ Quality Gate — PHẢI pass ALL:
   ✓ no_placeholders: Không "[TBD]", "TODO", "..."?
   ✓ has_hook: Có hook ở mở bài?
   ✓ has_takeaway: Có strategic takeaway ở kết bài?
+
+Depth Gate (BẮT BUỘC):
+  ✓ min_facts_per_core_section: I-IV mỗi section >= 5 facts có nguồn
+  ✓ second_order_present: mỗi VIEW có ít nhất 1 tác động bậc 2
+  ✓ specific_triggers_present: có trigger cụ thể (mốc điểm/giá/điều kiện)
+  ✓ cross_asset_linkage: có liên kết macro → ngành → doanh nghiệp
+  ✓ no_technical_only_bias: không chỉ nói kỹ thuật/dòng tiền chung chung
+
+Enterprise Flexible Rule:
+  ✓ Nếu thiếu dữ liệu DN sống còn (cổ tức/ĐHĐCĐ/hợp đồng/LN quý/nợ-cashflow) thì bỏ qua
+  ✓ Không ép đủ 5 ô cho mọi mã
+  ✓ Có dữ liệu DN/ngành tài chính liên quan thì bắt buộc đưa vào đúng section với nguồn rõ ràng
+  ✓ Không suy diễn khi thiếu dữ liệu verify (ghi rõ "chưa có cập nhật verify") nếu cần nói trạng thái dữ liệu.
+
+Depth Gate (BẮT BUỘC):
+  ✓ min_facts_per_core_section: I-IV mỗi section >= 5 facts có nguồn
+  ✓ second_order_present: mỗi VIEW có ít nhất 1 tác động bậc 2
+  ✓ specific_triggers_present: có trigger cụ thể (mốc điểm/giá/điều kiện)
+  ✓ cross_asset_linkage: có liên kết macro → ngành → doanh nghiệp
+  ✓ no_technical_only_bias: không chỉ nói kỹ thuật/dòng tiền chung chung
+
+Enterprise Flexible Rule:
+  ✓ Nếu thiếu dữ liệu DN sống còn (cổ tức/ĐHĐCĐ/hợp đồng/LN quý/nợ-cashflow) thì bỏ qua
+  ✓ Không ép đủ 5 ô cho mọi mã
+  ✓ Có dữ liệu DN/ngành tài chính liên quan thì bắt buộc đưa vào đúng section với nguồn rõ ràng
+  ✓ Không suy diễn khi thiếu dữ liệu verify (ghi rõ "chưa có cập nhật verify") nếu cần nói trạng thái dữ liệu.
 
 → FAIL? → Quay lại Phase 3, không push
 → PASS? → Tiếp tục:

@@ -42,27 +42,36 @@ FETCH → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGH
 
 ---
 
-## REPORT v6.1-OPUS — 29/03/2026 13:00
+## FRAMEWORK PATCH v6.1.1 — 29/03/2026
 
-**📌 Thay đổi lớn:** Bổ sung bắt buộc lớp “Enterprise Survival Status” cho các mã được chỉ định (ACB, MSN, PVD, HAH, GMD).
+**📌 Thay đổi lớn:** Chuyển chính sách doanh nghiệp từ "bắt buộc 5 ô" sang "optional-if-available", đồng thời siết độ sâu nội dung bằng Depth Gate bắt buộc.
 
-**Cải tiến:**
-- ✅ Section địa chính trị cập nhật nóng Mỹ–Israel–Iran (multi-front escalation, Hormuz, tác động vĩ mô).
-- ✅ Mỗi mã được theo dõi 5 ô sống còn: Dividend | AGM | Contract | Quarterly Profit | Cashflow/Debt.
-- ✅ Nếu chưa có dữ liệu verify thì ghi rõ "Chưa có cập nhật mới đã xác minh" (không suy diễn).
-- ✅ Tách rõ dữ liệu verify được và dữ liệu narrative để tránh nhầm.
+**Cập nhật framework:**
+- ✅ Enterprise Flexible Rule: không ép đủ 5 ô (cổ tức/ĐHĐCĐ/hợp đồng/LN quý/nợ-cashflow) khi nguồn không có.
+- ✅ Nếu không có dữ liệu verify → bỏ qua hoặc ghi rõ trạng thái dữ liệu, KHÔNG suy diễn.
+- ✅ Depth Gate bắt buộc trong quality gate:
+  - min_facts_per_core_section (I-IV >= 5 facts)
+  - second_order_present
+  - specific_triggers_present
+  - cross_asset_linkage
+  - no_technical_only_bias
+- ✅ Cập nhật `SKILL.md` để đồng bộ policy mới.
+- ✅ Cập nhật `references/quality-gate.md` với checklist mới.
 
-**File:** `NewsReport/2026/03/News_2026-03-29_1300_v6.1-OPUS.md`
+**Files:**
+- `SKILL.md`
+- `references/quality-gate.md`
+- `NewsReport/CHANGELOG.md`
 
 ---
 
 ## REPORT v6.1-OPUS — 29/03/2026 13:00
 
-**📌 Thay đổi lớn:** Bổ sung bắt buộc lớp “Enterprise Survival Status” cho các mã được chỉ định (ACB, MSN, PVD, HAH, GMD).
+**📌 Thay đổi lớn:** Bổ sung lớp “Enterprise Survival Status” cho các mã được chỉ định (ACB, MSN, PVD, HAH, GMD).
 
 **Cải tiến:**
 - ✅ Section địa chính trị cập nhật nóng Mỹ–Israel–Iran (multi-front escalation, Hormuz, tác động vĩ mô).
-- ✅ Mỗi mã được theo dõi 5 ô sống còn: Dividend | AGM | Contract | Quarterly Profit | Cashflow/Debt.
+- ✅ Chèn dữ liệu doanh nghiệp theo hướng optional-if-available (không ép đủ form khi thiếu nguồn verify).
 - ✅ Nếu chưa có dữ liệu verify thì ghi rõ "Chưa có cập nhật mới đã xác minh" (không suy diễn).
 - ✅ Tách rõ dữ liệu verify được và dữ liệu narrative để tránh nhầm.
 

@@ -26,6 +26,13 @@
 - [ ] **no_placeholders** — Không chứa "[TBD]", "TODO", "...", "[Cập nhật]"?
 - [ ] **min_word_count** — ≥ 2000 từ?
 
+### Độ sâu phân tích (Depth Gate — BẮT BUỘC)
+- [ ] **min_facts_per_core_section** — Mỗi section I-IV có tối thiểu 5 FACT có nguồn?
+- [ ] **second_order_present** — Mỗi VIEW có ít nhất 1 tác động bậc 2?
+- [ ] **specific_triggers_present** — Có trigger rõ (mốc điểm/giá/điều kiện), không nói chung chung?
+- [ ] **cross_asset_linkage** — Có liên kết chéo vĩ mô → ngành → doanh nghiệp?
+- [ ] **no_technical_only_bias** — Không chỉ nói kỹ thuật/dòng tiền; có business context?
+
 ### Fact Verification (BẮT BUỘC — v2.0)
 > Xem chi tiết: `references/fact-extraction-template.md`
 
@@ -43,6 +50,11 @@
 - [ ] **has_hook** — Mở bài có Hook (Curiosity/Story/Contrarian/Data)?
 - [ ] **narrative_flow** — Các phần liên kết mạch lạc (không liệt kê khô khan)?
 - [ ] **no_generic** — Không có câu chung chung: "cần thận trọng", "nên theo dõi"?
+
+### Doanh nghiệp / Ngành (Flexible Data Rule)
+- [ ] **enterprise_optional_rule_applied** — Nếu không có dữ liệu sống còn (cổ tức/ĐHĐCĐ/hợp đồng/LN quý/nợ-cashflow) thì bỏ qua, không bịa?
+- [ ] **enterprise_news_if_available** — Nếu có tin DN/ngành liên quan hoạt động tài chính thì đã đưa vào đúng section?
+- [ ] **no_forced_fields** — Không ép đủ 5 ô DN khi dữ liệu nguồn không có?
 
 ### Metadata
 - [ ] **has_metadata** — Header có: version, date, models, sources count?
