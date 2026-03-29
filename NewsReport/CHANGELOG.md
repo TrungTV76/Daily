@@ -42,7 +42,37 @@ FETCH → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGH
 
 ---
 
+## REPORT v6.2-OPUS — 29/03/2026 19:00
+
+**📌 Thay đổi lớn:** Xuất bản snapshot OPUS 19:00 theo framework mới (Depth Gate + Enterprise Flexible Rule).
+
+**Cải tiến:**
+- ✅ Cập nhật mốc thời gian phiên tối 19:00 cho toàn bộ metadata và nội dung.
+- ✅ Giữ cấu trúc phân tích sâu theo IEIA + scenario + contrarian + trigger levels.
+- ✅ Áp dụng policy DN linh hoạt: chỉ đưa dữ liệu đã verify, thiếu thì ghi rõ trạng thái dữ liệu.
+
+**File:** `NewsReport/2026/03/News_2026-03-29_1900_v6.2-OPUS.md`
+
+---
+
+## REPORT v6.2-OPUS — 29/03/2026 19:00
+
+**📌 Thay đổi lớn:** Xuất bản snapshot OPUS 19:00 theo framework mới (Depth Gate + Enterprise Flexible Rule).
+
+**Cải tiến:**
+- ✅ Cập nhật mốc thời gian phiên tối 19:00 cho toàn bộ metadata và nội dung.
+- ✅ Giữ cấu trúc phân tích sâu theo IEIA + scenario + contrarian + trigger levels.
+- ✅ Áp dụng policy DN linh hoạt: chỉ đưa dữ liệu đã verify, thiếu thì ghi rõ trạng thái dữ liệu.
+
+**File:** `NewsReport/2026/03/News_2026-03-29_1900_v6.2-OPUS.md`
+
+---
+
 ## FRAMEWORK PATCH v6.1.1 — 29/03/2026
+
+**📌 Thay đổi lớn:** Chuyển chính sách doanh nghiệp từ "bắt buộc 5 ô" sang "optional-if-available", đồng thời siết độ sâu nội dung bằng Depth Gate bắt buộc.
+
+**📌 Thay đổi lớn:** Chuyển chính sách doanh nghiệp từ "bắt buộc 5 ô" sang "optional-if-available", đồng thời siết độ sâu nội dung bằng Depth Gate bắt buộc.
 
 **📌 Thay đổi lớn:** Chuyển chính sách doanh nghiệp từ "bắt buộc 5 ô" sang "optional-if-available", đồng thời siết độ sâu nội dung bằng Depth Gate bắt buộc.
 
