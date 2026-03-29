@@ -1,10 +1,48 @@
 # Daily Macro Briefing — Changelog
 
+> Pipeline: **v6.0** (2026-03-29)
+> Full pipeline: FETCH → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGHT → STRATEGY → QGATE v2.0 → CHANGELOG → PUSH → NOTIFY
+
 > Lịch sử phiên bản báo cáo Daily Macro Briefing — ghi nhận tất cả thay đổi, cải tiến, và lý do cập nhật qua mỗi version.
 
 ---
 
-## Tổng quan Pipeline v5.0
+---
+
+## SKILL CONFIG v6.0 — 29/03/2026 | ✅ Phiên bản skill hiện tại
+
+> **Ghi chú:** Skill config files nằm trong `~/.claude/skills/daily-macro-briefing/` — chưa sync riêng repo. Các files báo cáo nằm trong `NewsReport/`.
+
+**📌 Thay đổi lớn:** Nâng cấp pipeline từ v5.0 lên v6.0 — 5 modules mới
+
+**Nguyên nhân:** Thực hiện roadmap cải tiến đã đề xuất trong CHANGELOG v5.2
+
+**Cải tiến:**
+- ✅ Thêm `references/x-twitter-agent.md` — Agent-based scraping Tier 5 X/Twitter
+- ✅ Thêm `references/fetch-article-bodies.md` — BBC/CNBC body fetch (AMP→Proxy→Agent→WebSearch→UNVERIFIED)
+- ✅ Thêm `references/cross-reference-rules.md` — Auto financial fact ≥2 nguồn
+- ✅ Thêm `references/narrative-contamination-checker.md` — Auto bias detection 5 loại
+- ✅ Thêm `references/auto-changelog-generator.md` — Auto update CHANGELOG per version
+- ✅ Update `references/quality-gate.md` — Fact Verification v2.0 (9 items bắt buộc)
+- ✅ Update `SKILL.md` — Pipeline v6.0 + Full Reference Map
+
+**Pipeline v6.0:**
+```
+FETCH → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGHT → STRATEGY → QGATE v2.0 → CHANGELOG → PUSH → NOTIFY
+```
+
+**Files mới:**
+| File | Lines | Mục đích |
+|------|-------|---------|
+| `references/x-twitter-agent.md` | ~150 | Agent scraping 10 accounts X/Twitter |
+| `references/fetch-article-bodies.md` | ~180 | BBC/CNBC body fetch 5 methods |
+| `references/cross-reference-rules.md` | ~200 | Financial fact ≥2 nguồn |
+| `references/narrative-contamination-checker.md` | ~250 | 5-type bias detection |
+| `references/auto-changelog-generator.md` | ~200 | Auto changelog per version |
+
+---
+
+## REPORT v5.2-OPUS — 29/03/2026
 
 ```
 FETCH (WebFetch RSS feeds)

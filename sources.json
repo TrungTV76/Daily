@@ -1,0 +1,678 @@
+{
+  "version": "5.0",
+  "last_updated": "2026-03-25",
+  "description": "Nguồn tin cho Daily Macro Briefing — phân tier theo độ ưu tiên và phương thức fetch",
+
+  "sources": {
+    "tier1_vn_market": {
+      "description": "Thị trường CK Việt Nam — Bluechips, Doanh nghiệp, Tài chính",
+      "priority": 1,
+      "sources": [
+        {
+          "id": "cafef_ck",
+          "name": "CafeF Thị trường chứng khoán",
+          "url": "https://cafef.vn/thi-truong-chung-khoan.rss",
+          "fetch_method": "rss",
+          "fallback_url": "https://cafef.vn/thi-truong-chung-khoan.chn",
+          "fallback_method": "web_scrape",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "vn_market",
+          "avg_quality": 4.2,
+          "success_rate": 0.80,
+          "note": "RSS đôi khi bị block, fallback sang web scrape"
+        },
+        {
+          "id": "vietstock_dn",
+          "name": "Vietstock Doanh nghiệp",
+          "url": "https://vietstock.vn/doanh-nghiep.rss",
+          "fetch_method": "rss",
+          "fallback_url": "https://vietstock.vn/doanh-nghiep.htm",
+          "fallback_method": "web_scrape",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "vn_market",
+          "avg_quality": 4.0,
+          "success_rate": 0.75,
+          "note": "RSS có thể lỗi XML parse"
+        },
+        {
+          "id": "vneconomy_tc",
+          "name": "VnEconomy Tài chính Ngân hàng",
+          "url": "https://vneconomy.vn/tai-chinh-ngan-hang.rss",
+          "fetch_method": "rss",
+          "fallback_url": "https://vneconomy.vn/tai-chinh.htm",
+          "fallback_method": "web_scrape",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "vn_market",
+          "avg_quality": 4.3,
+          "success_rate": 0.82
+        },
+        {
+          "id": "vnexpress_kd",
+          "name": "VnExpress Kinh doanh",
+          "url": "https://vnexpress.net/rss/kinh-doanh.rss",
+          "fetch_method": "rss",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "vn_market",
+          "avg_quality": 4.1,
+          "success_rate": 0.95
+        }
+      ]
+    },
+
+    "tier1_policy_law": {
+      "description": "Chính sách, Thuế, Luật — Thông tư, Nghị định mới",
+      "priority": 1,
+      "sources": [
+        {
+          "id": "tvpl",
+          "name": "Thư viện Pháp luật - Tin mới",
+          "url": "https://thuvienphapluat.vn/rss/tin-moi.rss",
+          "fetch_method": "rss",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "policy_law",
+          "avg_quality": 4.5,
+          "success_rate": 0.90
+        },
+        {
+          "id": "vneconomy_cs",
+          "name": "VnEconomy Chính sách",
+          "url": "https://vneconomy.vn/chinh-sach.rss",
+          "fetch_method": "rss",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "policy_law",
+          "avg_quality": 4.2,
+          "success_rate": 0.85
+        }
+      ]
+    },
+
+    "tier2_global_macro": {
+      "description": "Địa chính trị, Vĩ mô thế giới, Tin nóng ảnh hưởng TTCK",
+      "priority": 2,
+      "sources": [
+        {
+          "id": "bbc_world",
+          "name": "BBC News World",
+          "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+          "fetch_method": "rss",
+          "extract": "top_5",
+          "enabled": true,
+          "category": "geopolitics",
+          "avg_quality": 4.4,
+          "success_rate": 0.98
+        },
+        {
+          "id": "cnbc_world",
+          "name": "CNBC World Economy",
+          "url": "https://www.cnbc.com/id/100727362/device/rss/rss.html",
+          "fetch_method": "rss",
+          "extract": "top_5",
+          "enabled": true,
+          "category": "geopolitics",
+          "avg_quality": 4.5,
+          "success_rate": 0.92
+        },
+        {
+          "id": "bloomberg",
+          "name": "Bloomberg Markets",
+          "url": "https://www.bloomberg.com/markets",
+          "fetch_method": "web_scrape",
+          "extract": "headlines_10",
+          "enabled": true,
+          "category": "geopolitics",
+          "avg_quality": 4.8,
+          "success_rate": 0.70,
+          "note": "Paywall — chỉ lấy headlines"
+        },
+        {
+          "id": "reuters_biz",
+          "name": "Reuters Business",
+          "url": "https://www.reuters.com/business/",
+          "fetch_method": "web_scrape",
+          "extract": "top_5",
+          "enabled": true,
+          "category": "geopolitics",
+          "avg_quality": 4.6,
+          "success_rate": 0.85
+        }
+      ]
+    },
+
+    "tier3_tech_ai": {
+      "description": "Công nghệ, AI, Hạ tầng dữ liệu, Thiết bị thông minh",
+      "priority": 3,
+      "sources": [
+        {
+          "id": "hn",
+          "name": "Hacker News",
+          "url": "https://news.ycombinator.com",
+          "fetch_method": "web_scrape",
+          "extract": "top_10",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 4.5,
+          "success_rate": 0.95
+        },
+        {
+          "id": "hf_papers",
+          "name": "HuggingFace Papers",
+          "url": "https://huggingface.co/papers",
+          "fetch_method": "web_scrape",
+          "extract": "top_voted_5",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 4.8,
+          "success_rate": 0.98
+        },
+        {
+          "id": "the_verge",
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence",
+          "fetch_method": "web_scrape",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 4.3,
+          "success_rate": 0.90
+        },
+        {
+          "id": "tinhte",
+          "name": "Tinh tế",
+          "url": "https://tinhte.vn/rss",
+          "fetch_method": "rss",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 3.8,
+          "success_rate": 0.92
+        },
+        {
+          "id": "vnreview",
+          "name": "VnReview",
+          "url": "https://vnreview.vn",
+          "fetch_method": "web_scrape",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 3.7,
+          "success_rate": 0.85
+        },
+        {
+          "id": "genk",
+          "name": "GenK AI",
+          "url": "https://genk.vn/ai.rss",
+          "fetch_method": "rss",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 3.5,
+          "success_rate": 0.88
+        },
+        {
+          "id": "vnexpress_sh",
+          "name": "VnExpress Số hóa",
+          "url": "https://vnexpress.net/rss/so-hoa.rss",
+          "fetch_method": "rss",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "tech_ai",
+          "avg_quality": 3.9,
+          "success_rate": 0.95
+        }
+      ]
+    },
+
+    "tier4_substack_experts": {
+      "description": "Hệ sinh thái Substack/Expert — nguồn tin từ chuyên gia có uy tín",
+      "priority": 4,
+      "sources": [
+        {
+          "id": "noahpinion",
+          "name": "Noahpinion (Noah Smith)",
+          "url": "https://noahpinion.substack.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Kinh tế, Chính sách công",
+          "avg_quality": 4.7,
+          "success_rate": 0.85
+        },
+        {
+          "id": "the_generalist",
+          "name": "The Generalist (Mario Gabriele)",
+          "url": "https://www.generalist.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Tech business, Startup",
+          "avg_quality": 4.6,
+          "success_rate": 0.80
+        },
+        {
+          "id": "finance_nl",
+          "name": "The Finance Newsletter (Andrew Lokenauth)",
+          "url": "https://thefinancenewsletter.substack.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Tài chính cá nhân, Đầu tư",
+          "avg_quality": 4.3,
+          "success_rate": 0.82
+        },
+        {
+          "id": "pragmatic_eng",
+          "name": "The Pragmatic Engineer (Gergely Orosz)",
+          "url": "https://blog.pragmaticengineer.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Software Engineering, Tech Industry",
+          "avg_quality": 4.5,
+          "success_rate": 0.88
+        },
+        {
+          "id": "one_useful",
+          "name": "One Useful Thing (Ethan Mollick)",
+          "url": "https://www.oneusefulthing.org",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "AI ứng dụng, Giáo dục",
+          "avg_quality": 4.7,
+          "success_rate": 0.90
+        },
+        {
+          "id": "hqt",
+          "name": "Hồ Quốc Tuấn",
+          "url": "https://hoquoctuan.substack.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Macro VN/Thế giới, Tài chính",
+          "avg_quality": 4.8,
+          "success_rate": 0.85,
+          "note": "Chuyên gia tài chính Việt Nam hàng đầu"
+        },
+        {
+          "id": "tapchi_phowall",
+          "name": "Tạp Chí Phố Wall (Steve Le)",
+          "url": "https://tapchiphowall.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Chứng khoán Mỹ, Vĩ mô, Kiến thức thị trường, Tin nóng hàng ngày",
+          "avg_quality": 4.6,
+          "success_rate": 0.88,
+          "note": "Phân tích chứng khoán Mỹ chuyên sâu bằng tiếng Việt — mục Kinh tế vĩ mô, Thị trường trong ngày, Kiến thức thị trường"
+        },
+        {
+          "id": "viethustler",
+          "name": "Viet Hustler",
+          "url": "https://viethustler.substack.com",
+          "fetch_method": "web_scrape",
+          "extract": "latest_1",
+          "enabled": true,
+          "category": "expert_opinion",
+          "expertise": "Tin tức thị trường, Xu hướng đầu tư",
+          "avg_quality": 4.4,
+          "success_rate": 0.90,
+          "note": "Substack VN với hàng chục ngàn subscribers — tin tức thị trường phân tích ngắn gọn cho nhà đầu tư"
+        }
+      ]
+    },
+
+    "tier5_x_twitter": {
+      "description": "X/Twitter — Real-time market intelligence từ traders, news wires, và thought leaders",
+      "priority": 5,
+      "fetch_method_note": "⚠️ X cần JS rendering. Phương án thay thế: (1) WebSearch cho '@username latest tweets', (2) Agent(Explore) subagent, (3) WebFetch nếu có RSS alternative. Lấy 3-5 posts mới nhất mỗi account.",
+      "sources": [
+        {
+          "id": "x_stevele",
+          "name": "Steve Le (Tạp Chí Phố Wall)",
+          "url": "https://x.com/real_stevele",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Chứng khoán Mỹ, Macro analysis",
+          "avg_quality": 4.5,
+          "success_rate": 0.70,
+          "note": "Chủ kênh Tạp Chí Phố Wall"
+        },
+        {
+          "id": "x_zerohedge",
+          "name": "ZeroHedge",
+          "url": "https://x.com/zerohedge",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Breaking news, Macro contrarian views",
+          "avg_quality": 4.3,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_deltaone",
+          "name": "DeItaone (Walter Bloomberg)",
+          "url": "https://x.com/DeItaone",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_5",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Real-time headlines, Breaking news wire",
+          "avg_quality": 4.7,
+          "success_rate": 0.70,
+          "note": "News wire nhanh nhất trên X — dùng cho tin nóng"
+        },
+        {
+          "id": "x_financialjuice",
+          "name": "FinancialJuice",
+          "url": "https://x.com/financialjuice",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Real-time economic data, Market signals",
+          "avg_quality": 4.4,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_osint613",
+          "name": "OSINT613",
+          "url": "https://x.com/Osint613",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_geopolitics",
+          "expertise": "OSINT — Trung Đông, Xung đột, Geopolitics",
+          "avg_quality": 4.5,
+          "success_rate": 0.70,
+          "note": "Nguồn OSINT thời gian thực cho xung đột Trung Đông"
+        },
+        {
+          "id": "x_wallstengine",
+          "name": "Wall St Engine",
+          "url": "https://x.com/wallstengine",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Earnings, Market data, Stock screeners",
+          "avg_quality": 4.2,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_ft",
+          "name": "Financial Times",
+          "url": "https://x.com/FT",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Global business, Finance, Economics",
+          "avg_quality": 4.8,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_hakimian",
+          "name": "Spencer Hakimian",
+          "url": "https://x.com/SpencerHakimian",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Macro trading, Rates, FX",
+          "avg_quality": 4.5,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_business",
+          "name": "Bloomberg Business",
+          "url": "https://x.com/business",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Bloomberg breaking news",
+          "avg_quality": 4.7,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_barchart",
+          "name": "Barchart",
+          "url": "https://x.com/Barchart",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_market",
+          "expertise": "Market data, Charts, Unusual options activity",
+          "avg_quality": 4.3,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_foxnews",
+          "name": "Fox News",
+          "url": "https://x.com/FoxNews",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_geopolitics",
+          "expertise": "US politics, Breaking news",
+          "avg_quality": 3.8,
+          "success_rate": 0.70
+        },
+        {
+          "id": "x_trump",
+          "name": "Donald Trump",
+          "url": "https://x.com/realDonaldTrump",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_geopolitics",
+          "expertise": "US policy, Tariffs, Geopolitics — Market-moving posts",
+          "avg_quality": 4.0,
+          "success_rate": 0.70,
+          "note": "Posts thường move markets — ưu tiên cao cho Phase 2 analysis"
+        },
+        {
+          "id": "x_elon",
+          "name": "Elon Musk",
+          "url": "https://x.com/elonmusk",
+          "fetch_method": "browser_subagent",
+          "extract": "latest_3",
+          "enabled": true,
+          "category": "x_tech",
+          "expertise": "Tesla, SpaceX, xAI, DOGE, Tech vision",
+          "avg_quality": 4.2,
+          "success_rate": 0.70,
+          "note": "Posts ảnh hưởng crypto và tech stocks"
+        }
+      ]
+    },
+
+    "tier6_brave_search": {
+      "description": "Brave Search API — Discovery layer cho tin nóng ngoài danh sách nguồn cố định",
+      "priority": 6,
+      "enabled": true,
+      "auto_expire": "2026-03-31",
+      "note": "API key hết hạn 31/03/2026. Sau ngày này, tier tự động disabled. Quota còn ~$0.71.",
+      "queries": [
+        "VN-Index chứng khoán Việt Nam hôm nay site:cafef.vn OR site:vietstock.vn",
+        "Trump tariff trade war latest news",
+        "Federal Reserve interest rate decision March 2026",
+        "AI infrastructure semiconductor NVIDIA latest",
+        "Middle East conflict oil price impact",
+        "Vietnam policy tax law latest 2026"
+      ],
+      "config": {
+        "max_queries_per_run": 3,
+        "results_per_query": 5,
+        "freshness": "pd",
+        "cost_per_query_usd": 0.005,
+        "budget_remaining_usd": 0.71,
+        "budget_alert_threshold_usd": 0.10
+      }
+    }
+  },
+
+  "search_targets": [
+    "VN30 Bluechips chứng khoán Việt Nam hôm nay",
+    "Bloomberg Macro Geopolitics world news",
+    "AI Infrastructure Semiconductor news",
+    "Chính sách thuế thông tư nghị định mới nhất 2026 Việt Nam",
+    "Federal Reserve interest rate decision",
+    "China economy trade policy latest"
+  ],
+
+  "keywords": [
+    "VN30", "Bluechips", "Thanh khoản", "VN-Index",
+    "Thông tư", "Nghị định", "Chính sách thuế",
+    "AI Infrastructure", "Semiconductor", "LLM",
+    "FED", "DXY", "USD/VND", "Lãi suất",
+    "Địa chính trị", "Thương mại", "Tariff"
+  ],
+
+  "fetch_config": {
+    "rss": {
+      "timeout_ms": 15000,
+      "retry_count": 2,
+      "entries_per_source": 5,
+      "cache_ttl_hours": 24,
+      "tool": "WebFetch"
+    },
+    "web_scrape": {
+      "timeout_ms": 30000,
+      "retry_count": 1,
+      "tool": "WebFetch",
+      "note": "Dùng WebFetch (Claude Code CLI). Chuyển URL vào prompt để fetch HTML/markdown content."
+    },
+    "browser": {
+      "timeout_ms": 45000,
+      "tool": "Agent (Explore/GeneralPurpose)",
+      "note": "Dùng Agent tool với subagent_type:Explore cho X/Twitter và trang cần JS rendering. Ví dụ: Agent(prompt='Fetch latest tweets from X.com/DeItaone', subagent_type:'Explore')"
+    },
+    "brave_search": {
+      "enabled": true,
+      "auto_expire": "2026-03-31",
+      "tool": "WebSearch",
+      "note": "Claude Code CLI tích hợp sẵn WebSearch. Không cần API key riêng. Tự động fallback sang WebFetch nếu WebSearch không khả dụng."
+    }
+  },
+
+  "confidence_rules": {
+    "_comment_v2": "Thêm v2.0 — gắn fact_type và fetch_strategy cho từng nguồn để ngăn hallucination",
+    "_version": "2.0",
+
+    "fact_type_mapping": {
+      "tier1_vn_market":      "B_FINANCIAL",
+      "tier1_policy_law":    "C_REGULATORY",
+      "tier2_global_macro":  "A_GEOPOLITICAL",
+      "tier3_tech_ai":       "E_TECH_AI",
+      "tier4_substack_experts": "D_EXPERT_OPINION",
+      "tier5_x_twitter":     "F_MARKET_COLOR",
+      "tier6_brave_search":  "A_GEOPOLITICAL"
+    },
+
+    "fetch_strategy_by_type": {
+      "A_GEOPOLITICAL": {
+        "required": "article_body",
+        "fallback": "topic_hint_only",
+        "note": "Không viết FACT geopolitical khi chỉ có RSS headline"
+      },
+      "B_FINANCIAL": {
+        "required": "≥2 independent sources",
+        "fallback": "single_source_with_UNVERIFIED_flag",
+        "note": "Số liệu thị trường cần cross-reference"
+      },
+      "C_REGULATORY": {
+        "required": "official_source_or_summary",
+        "fallback": "verify_when_possible",
+        "note": "Luật/thuế: ưu tiên nguồn official"
+      },
+      "D_EXPERT_OPINION": {
+        "required": "article_body_from_source",
+        "fallback": "summary_with_attribution",
+        "note": "Substack/blog: ưu tiên article gốc"
+      },
+      "E_TECH_AI": {
+        "required": "headline_and_snippet",
+        "fallback": "headline_only",
+        "note": "RSS acceptable cho tin tech/AI"
+      },
+      "F_MARKET_COLOR": {
+        "required": "≥1 source",
+        "fallback": "use_with_caution",
+        "note": "Market color: ≥1 nguồn là đủ, nhưng flag nếu đơn lẻ"
+      }
+    },
+
+    "high_risk_patterns": {
+      "_comment": "Các pattern trong raw headline → trigger flag trước khi viết FACT",
+      "patterns": [
+        {
+          "pattern": "actor_unclear",
+          "regex": "(tấn công|bắn|nổ|phóng|khai hỏa|bắt đầu|kết thúc|lệnh ngừng bắn).*(ai|ai là|ai đã|nước nào|phía nào)",
+          "action": "VERIFY_ACTOR",
+          "note": "Headline có action nhưng không rõ ai làm → bắt buộc đọc article"
+        },
+        {
+          "pattern": "specific_numbers",
+          "regex": "\\d{2,}[\\s\\w]*(người|triệu|tỷ|nghìn|vụ|chiến|cuộc|máy bay|tên lửa|UAV|drone|dầu|lãi suất|điểm|%)",
+          "action": "VERIFY_NUMBER",
+          "note": "Số cụ thể cần verify từ article gốc"
+        },
+        {
+          "pattern": "geopolitical_country",
+          "regex": "(Iran|Nga|Mỹ|Trung Quốc|Ukraine|North Korea|Taiwan|Houthi|Hezbollah).*(tấn công|đáp trả|le|oscalation|deescalation)",
+          "action": "VERIFY_COUNTRY_CONTEXT",
+          "note": "Tin geopolitical luôn verify actor và context trước khi viết"
+        }
+      ]
+    },
+
+    "article_body_targets": {
+      "_comment": "Những nguồn bắt BUỘC phải fetch article body (không chỉ RSS)",
+      "sources": [
+        "bbc_world",
+        "cnbc_world",
+        "bloomberg",
+        "reuters_biz",
+        "noahpinion",
+        "one_useful",
+        "hqt",
+        "tapchiphowall"
+      ]
+    },
+
+    "cross_reference_pairs": {
+      "_comment": "Những cặp nguồn dùng cross-reference cho FINANCIAL facts",
+      "vn_market": ["cafef_ck", "vnexpress_kd", "vneconomy_tc"],
+      "fx_rate": ["vneconomy_tc", "cafef_ck"],
+      "oil_price": ["bloomberg", "cnbc_world", "bbc_world"],
+      "fed_rate": ["cnbc_world", "bloomberg"]
+    }
+  },
+
+  "quality_thresholds": {
+    "min_score_to_include": 3,
+    "target_items": 20,
+    "early_stop_threshold": 30,
+    "min_report_words": 2000,
+    "min_verification_rate": 0.70,
+    "max_low_confidence_facts": 0
+  }
+}
+
