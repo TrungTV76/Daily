@@ -1,0 +1,249 @@
+{
+  "schema_version": "2.0",
+  "description": "Daily Macro Briefing — incremental cache, dedup, history tracking",
+
+  "last_run": {
+    "date": "2026-03-25",
+    "duration_seconds": 720,
+    "items_collected": 28,
+    "items_published": 28,
+    "sources_used": ["vnexpress", "cafef", "vneconomy", "bbc", "cnbc", "bloomberg", "tapchiphowall", "hn", "vnreview_vn", "hoquoctuan", "viethustler", "noahpinion", "oneuseful", "thuvienphapluat", "websearch"],
+    "version": "v4.1-OPUS",
+    "models_used": ["Claude Opus 4 (Claude Code CLI)"],
+    "mode": "OPUS",
+    "github_commit": "d20baf5",
+    "github_pushed": true
+  },
+
+  "source_stats": {
+    "vnexpress_kd": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 8,
+      "avg_quality_score": 4.1,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "cafef_ck": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 8,
+      "avg_quality_score": 4.3,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "vneconomy_tc": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 5,
+      "avg_quality_score": 4.3,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "bbc_world": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 5,
+      "avg_quality_score": 4.4,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "cnbc_world": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 5,
+      "avg_quality_score": 4.5,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "bloomberg": {
+      "total_fetches": 1,
+      "success_count": 1,
+      "fail_count": 0,
+      "avg_items_per_fetch": 5,
+      "avg_quality_score": 4.2,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "reuters_biz": {
+      "total_fetches": 2,
+      "success_count": 0,
+      "fail_count": 2,
+      "avg_items_per_fetch": 0,
+      "avg_quality_score": 0,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": null,
+      "last_error": "HTTP 403 Forbidden"
+    },
+    "tapchiphowall": {
+      "total_fetches": 1,
+      "success_count": 1,
+      "fail_count": 0,
+      "avg_items_per_fetch": 3,
+      "avg_quality_score": 4.6,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "hn": {
+      "total_fetches": 1,
+      "success_count": 1,
+      "fail_count": 0,
+      "avg_items_per_fetch": 10,
+      "avg_quality_score": 4.5,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "hoquoctuan": {
+      "total_fetches": 1,
+      "success_count": 1,
+      "fail_count": 0,
+      "avg_items_per_fetch": 1,
+      "avg_quality_score": 4.8,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "noahpinion": {
+      "total_fetches": 2,
+      "success_count": 1,
+      "fail_count": 1,
+      "avg_items_per_fetch": 1,
+      "avg_quality_score": 4.7,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": "Redirected to noahpinion.blog"
+    },
+    "oneuseful": {
+      "total_fetches": 1,
+      "success_count": 1,
+      "fail_count": 0,
+      "avg_items_per_fetch": 1,
+      "avg_quality_score": 4.7,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null
+    },
+    "thuvienphapluat": {
+      "total_fetches": 1,
+      "success_count": 0,
+      "fail_count": 1,
+      "avg_items_per_fetch": 0,
+      "avg_quality_score": 0,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": null,
+      "last_error": "HTTP 403 Forbidden"
+    },
+    "websearch": {
+      "total_fetches": 2,
+      "success_count": 2,
+      "fail_count": 0,
+      "avg_items_per_fetch": 5,
+      "avg_quality_score": 3.8,
+      "last_fetch": "2026-03-25T12:00:00+07:00",
+      "last_success": "2026-03-25T12:00:00+07:00",
+      "last_error": null,
+      "note": "WebSearch used as fallback for Reuters 401 and Thuvienphapluat 403"
+    }
+  },
+
+  "url_cache": {
+    "_comment": "Hash-based dedup — chỉ fetch entries MỚI",
+    "_ttl_hours": 24,
+    "entries": {}
+  },
+
+  "content_hashes": {
+    "_comment": "MD5 content fingerprints cho title dedup (>80% similarity)",
+    "_ttl_hours": 168,
+    "entries": {}
+  },
+
+  "article_history": {
+    "2026-03-24": {
+      "version": "v4.1-OPUS",
+      "filename": "News_2026-03-24_1430_v4.1-OPUS.md",
+      "git_commit": "0f915dc",
+      "github_pushed": true,
+      "mode": "OPUS",
+      "sources_count": 9,
+      "items_count": 25,
+      "word_count": "~3500"
+    },
+    "2026-03-25": {
+      "version": "v4.1-OPUS",
+      "filename": "News_2026-03-25_1200_v4.1-OPUS.md",
+      "git_commit": "d20baf5",
+      "github_pushed": true,
+      "mode": "OPUS",
+      "sources_count": 15,
+      "items_count": 28,
+      "word_count": "~4200"
+    }
+  },
+
+  "quality_gate_log": {
+    "runs": [
+      {
+        "date": "2026-03-24",
+        "version": "v4.1-OPUS",
+        "result": "PASS",
+        "checks": {
+          "has_thesis": true,
+          "has_all_sections": true,
+          "has_xradar": true,
+          "has_takeaway": true,
+          "has_cliffhanger": true,
+          "facts_have_sources": true,
+          "views_have_ieia": true,
+          "no_placeholders": true,
+          "min_word_count": true,
+          "has_hook": true,
+          "has_metadata": true,
+          "correct_filename": true
+        },
+        "score": 4,
+        "note": "All checks passed. Reuters returned 401, used Brave Search as fallback. X/Twitter tier skipped due to browser auth requirements."
+      },
+      {
+        "date": "2026-03-25",
+        "version": "v4.1-OPUS",
+        "result": "PASS",
+        "checks": {
+          "has_thesis": true,
+          "has_all_sections": true,
+          "has_xradar": true,
+          "has_correlation_matrix": true,
+          "has_sector_heatmap": true,
+          "has_takeaway": true,
+          "has_scenario_analysis": true,
+          "has_contrarian_view": true,
+          "has_trigger_levels": true,
+          "has_cliffhanger": true,
+          "facts_have_sources": true,
+          "views_have_ieia": true,
+          "views_have_second_order": true,
+          "no_placeholders": true,
+          "min_word_count": true,
+          "has_hook": true,
+          "has_metadata": true,
+          "correct_filename": true
+        },
+        "score": 5,
+        "note": "OPUS mode full: 5 sections + X-RADAR + Correlation Matrix + Sector Heatmap + Expert Comparison + Scenario Analysis + Contrarian View + Trigger Levels. All 17 OPUS checks passed. Sources: VnExpress, CafeF, VnEconomy, BBC, CNBC, Bloomberg, Tạp Chí Phố Wall, HN, Hồ Quốc Tuấn, Viet Hustler, Noah Smith, Ethan Mollick, WebSearch. GitHub push: d20baf5."
+      }
+    ]
+  }
+}
