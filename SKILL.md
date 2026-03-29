@@ -217,9 +217,19 @@ Incremental logic:
   - TTL cache: 24h
 
 Output: raw_data.json chứa {source_id, title, url, content_snippet, timestamp, hash}
-```
 
-### Phase 1.5: VERIFY (Fact Extraction + Confidence Gate) 🆕 v5.0
+Fetch Verification Gate (BẮT BUỘC sau Phase 1):
+  ⚠️ KIỂM TRA TRƯỚC KHI SANG PHASE 2:
+  - Tổng số items fetch được: phải >= 20 items
+  - Tier 1-2 (VN Market + Global): phải có ít nhất 10 items có content
+  - Mỗi tier: ít nhất 1 source phải return content (không phải empty/error)
+  - FAIL nếu: tổng items < 10 HOẶC tất cả sources đều return empty
+  - FAIL action: thử fallback methods (thuvienphapluat.vn → luatvietnam.vn, cafef → vietstock, etc.)
+  - Nếu vẫn fail sau fallback: STOP + báo user "Fetch thất bại — không tạo version mới"
+
+  ⚠️ ROOT CAUSE v6.1/v6.2: Pipeline tạo version mới dù fetch fail silent.
+  Từ nay: KHÔNG SANG PHASE 2 nếu Fetch Verification FAIL.
+ 🆕 v5.0
 
 **Nguyên tắc:** Không viết FACT trực tiếp từ raw_data. BẮT BUỘC tạo lớp verification trung gian.
 
@@ -413,13 +423,39 @@ Enterprise Flexible Rule:
   ✓ Có dữ liệu DN/ngành tài chính liên quan thì bắt buộc đưa vào đúng section với nguồn rõ ràng
   ✓ Không suy diễn khi thiếu dữ liệu verify (ghi rõ "chưa có cập nhật verify") nếu cần nói trạng thái dữ liệu.
 
+Content Change Gate (BẮT BUỘC):
+  ✓ has_new_facts: >= 5 facts mới so với phiên trước
+  ✓ thesis_changed: Key Thesis thay đổi đáng kể (không phải chỉ rephrase)
+  ✓ sources_fetched: liệt kê cụ thể nguồn đã fetch (không phải "multiple sources" chung chung)
+  ⚠️ FAIL nếu content_change = false → Không tạo version mới, chỉ cập nhật timestamp
+
 → FAIL? → Quay lại Phase 3, không push
 → PASS? → Tiếp tục:
 
-Versioning:
-  - Filename: News_YYYY-MM-DD_HHMM_vX.Y.md
-  - Metadata header trong file
-  - Lưu vào NewsReport/YYYY/MM/ (trong thư mục skill)
+Versioning — QUY TẮC BẮT BUỘC:
+  ⚠️ NGUYÊN TẮC VÀNG: Mỗi version mới phải có NỘI DUNG MỚI. Không tạo version chỉ để thay đổi timestamp.
+
+  Trigger tạo version MỚI (bắt buộc pass ÍT NHẤT 1):
+    ✓ Có ≥5 facts MỚI so với phiên trước (từ sources.json)
+    ✓ Key Thesis thay đổi đáng kể (không phải chỉ rephrase)
+    ✓ Có sự kiện breaking news xác định được
+    ✓ Có thay đổi định hướng chiến lược danh mục
+
+  Trigger CẬP NHẬT TRÊN FILE CŨ (không tạo version mới):
+    ✗ Chỉ thay đổi timestamp
+    ✗ Không có tin mới từ nguồn (sau khi đã fetch đầy đủ)
+    ✗ Chỉ rephrase Key Thesis mà không có facts mới
+    ✗ Phiên cuối tuần/ngày nghỉ mà pipeline vẫn chạy nhưng không fetch được
+
+  Khi không tạo version mới:
+    → Cập nhật timestamp trong file gốc gần nhất
+    → Thêm footer note: "[NO_NEW_CONTENT — timestamp update only]"
+    → Ghi vào quality_gate_log: no_new_content: true
+
+  Metadata header trong file:
+    - Filename: News_YYYY-MM-DD_HHMM_vX.Y.md
+    - Trong file: timestamp, version, sources_fetched, content_change_flag
+    - Lưu vào NewsReport/YYYY/MM/ (trong thư mục skill)
 
 GitHub Auto-Push:
   Repo: TrungTV76/Daily (https://github.com/TrungTV76/Daily)

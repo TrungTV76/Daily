@@ -1,7 +1,7 @@
 # Daily Macro Briefing — Changelog
 
-> Pipeline: **v6.0** (2026-03-29)
-> Full pipeline: FETCH → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGHT → STRATEGY → QGATE v2.0 → CHANGELOG → PUSH → NOTIFY
+> Pipeline: **v6.3** (2026-03-29)
+> Full pipeline: FETCH → **FETCH_VERIFY** → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGHT → STRATEGY → **CONTENT_CHANGE_GATE** → QGATE v2.0 → CHANGELOG → PUSH → NOTIFY
 
 > Lịch sử phiên bản báo cáo Daily Macro Briefing — ghi nhận tất cả thay đổi, cải tiến, và lý do cập nhật qua mỗi version.
 
@@ -9,7 +9,36 @@
 
 ---
 
-## SKILL CONFIG v6.0 — 29/03/2026 | ✅ Phiên bản skill hiện tại
+## SKILL CONFIG v6.3 — 29/03/2026 | ✅ Phiên bản skill hiện tại
+
+> **Root cause fixed:** Pipeline tạo version mới dù không fetch được tin mới (v6.1/v6.2 giống hệt nhau)
+
+**Thay đổi lớn:** Thêm 2 gates bắt buộc ngăn silent fail và version bloat
+
+**Cải tiến:**
+- ✅ Thêm **Fetch Verification Gate** vào Phase 1 — ngăn silent fail
+  - Tổng items >= 20, Tier 1-2 >= 10 items có content
+  - FAIL nếu: tổng items < 10 HOẶC tất cả sources return empty
+  - FAIL action: thử fallback methods → STOP + báo user "Fetch thất bại"
+- ✅ Thêm **Content Change Gate** vào Quality Gate
+  - has_new_facts: >= 5 facts mới so với phiên trước
+  - thesis_changed: Key Thesis thay đổi đáng kể
+  - sources_fetched: liệt kê cụ thể nguồn đã fetch (không "multiple sources")
+  - FAIL action: Không tạo version mới, chỉ cập nhật timestamp trên file cũ
+- ✅ Thêm **Versioning Rules** bắt buộc
+  - Trigger tạo version mới: >= 5 facts mới HOẶC Key Thesis thay đổi HOẶC breaking news
+  - Trigger cập nhật file cũ: chỉ thay đổi timestamp
+  - Ghi `[NO_NEW_CONTENT — timestamp update only]` khi không có content mới
+- ✅ Root cause ghi nhận: v6.1 (13:00) và v6.2 (19:00) giống hệt nhau vì pipeline không fetch được dữ liệu mới trong khoảng 13:00-19:00 29/03/2026
+
+**Pipeline v6.3:**
+```
+FETCH → FETCH_VERIFY → X/AGENT → BBC/BODY → VERIFY → CROSS-REF → NARRATIVE → INSIGHT → STRATEGY → CONTENT_CHANGE_GATE → QGATE v2.0 → CHANGELOG → PUSH → NOTIFY
+```
+
+---
+
+## SKILL CONFIG v6.0 — 29/03/2026
 
 > **Ghi chú:** Skill config files nằm trong `~/.claude/skills/daily-macro-briefing/` — chưa sync riêng repo. Các files báo cáo nằm trong `NewsReport/`.
 
